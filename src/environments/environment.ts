@@ -23,8 +23,8 @@ class Environment implements IEnvironment {
 		this.setEnvironment(this.env);
 		const port: string | undefined | number = process.env.PORT || 3146;
 		this.port = Number(port);
-		this.applyEncryption = JSON.parse(process.env.APPLY_ENCRYPTION);
-		this.secretKey = process.env.SECRET_KEY;
+		this.applyEncryption = JSON.parse(<string>process.env.APPLY_ENCRYPTION);
+		this.secretKey = <string>process.env.SECRET_KEY;
 	}
 
 	/**

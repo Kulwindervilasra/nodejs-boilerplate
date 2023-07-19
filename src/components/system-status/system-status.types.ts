@@ -97,7 +97,6 @@ export interface IOsInformation {
 
 export interface ISystemInfoResponse {
 	cpus: INodeJsCpuInfo[];
-	network: { [index: string]: INodeJsNetworkInterfaceInfo[] };
 	os: IOsInformation;
 	currentUser: IUserInfo;
 }

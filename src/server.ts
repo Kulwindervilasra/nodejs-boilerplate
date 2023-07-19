@@ -4,12 +4,13 @@ import { setGlobalEnvironment } from './global';
 import App from './App';
 import Environment from './environments/environment';
 import logger from './lib/logger';
+import grpcServer from "./grpc_server";
+
 
 const env: Environment = new Environment();
 setGlobalEnvironment(env);
 const app: App = new App();
 let server: http.Server;
-
 function serverError(error: NodeJS.ErrnoException): void {
 	if (error.syscall !== 'listen') {
 		throw error;
@@ -30,6 +31,7 @@ app.init()
 		server = app.httpServer;
 		server.on('error', serverError);
 		server.on('listening', serverListening);
+		grpcServer();
 		server.listen(env.port);
 	})
 	.catch((err: Error) => {

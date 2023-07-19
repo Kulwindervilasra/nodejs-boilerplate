@@ -48,7 +48,6 @@ export default class SystemStatusController extends BaseApi {
 		try {
 			const response: ISystemInfoResponse = {
 				cpus: os.cpus(),
-				network: os.networkInterfaces(),
 				os: {
 					platform: process.platform,
 					version: os.release(),

@@ -108,7 +108,7 @@ export default class Crypto {
 		// @data: It is used to update the cipher by new content
 		// @inputEncoding: Input encoding format
 		// @outputEncoding: Output encoding format
-		let str = decipher.update(text, null, outputEncoding);
+		let str = decipher.update(text, undefined, outputEncoding);
 
 		// Return the buffer containing the value of cipher object.
 		// @outputEncoding: Output encoding format
