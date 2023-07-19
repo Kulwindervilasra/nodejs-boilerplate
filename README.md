@@ -1,4 +1,3 @@
-# [Node-Typescript-Boilerplate](https://blog.santoshshinde.com/skeleton-for-node-js-apps-written-in-typescript-444fa1695b30)  [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=santoshshinde2012_node-boilerplate&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=santoshshinde2012_node-boilerplate)
 
 Skeleton for Node.js applications written in TypeScript
 
@@ -37,13 +36,11 @@ Try it!! I am happy to hear your feedback or any kind of new features.
 - [x] `http-status-codes`
 - [x] `winston`, `@types/winston`
 
-# [Start the application](https://blog.santoshshinde.com/skeleton-for-node-js-apps-written-in-typescript-444fa1695b30)
 
-![Workflow](https://github.com/santoshshinde2012/node-boilerplate/blob/master/wiki/environment.jpg?raw=true)
 
 ## Start The application in Development Mode
 
-- Clone the Application `git clone https://github.com/santoshshinde2012/node-boilerplate.git`
+- Clone the Application `git clone https://github.com/Kulwindervilasra/nodejs-boilerplate.git`
 - Install the dependencies `npm install`
 - Start the application `npm run start:local`
 
@@ -72,9 +69,6 @@ Try it!! I am happy to hear your feedback or any kind of new features.
 | **tests/unit-tests/**             | Unit Test cases will be placed here  |
 | **tests/integration-tests/**      | API routes (Integration) Test cases will be placed here|
 
-## Workflow
-
-![Workflow](https://github.com/santoshshinde2012/node-boilerplate/blob/master/wiki/boilerplate-components.jpg?raw=true)
 
 
 ## Encryption
@@ -102,12 +96,6 @@ The swagger documentation is available at the following url `${host}/docs`:
 - `${host}/api/status/process` -  Return the process details in response
 - `${host}/api/status/error` - Return the error generated object in response
 
-![Swagger API Documentation](https://github.com/santoshshinde2012/node-boilerplate/blob/master/wiki/swagger-api-documentation.jpg?raw=true)
-
-## Refrences
-
-- [Skeleton for Node.js Apps written in TypeScript](https://javascript.plainenglish.io/skeleton-for-node-js-apps-written-in-typescript-444fa1695b30)
-- [Setup Eslint Prettier and Husky in Node JS Typescript Project](https://gist.github.com/santoshshinde2012/e1433327e5f7a58f98fe3e6651c4d5de)
 
 ## Notes
 
@@ -130,13 +118,6 @@ chmod ug+x .git/hooks/*
 - Ensure your dependencies are secure
 - Avoid other known vulnerabilities
 - Additional considerations
-
-### 3. Tutorials 
-- [Skeleton for Node.js Apps written in TypeScript (with Setup Instructions for ESLint, Prettier, and Husky)](https://blog.santoshshinde.com/skeleton-for-node-js-apps-written-in-typescript-444fa1695b30)
-- [Global Error and Response Handler in Node JS with Express and Typescript](https://blog.santoshshinde.com/global-error-and-response-handler-in-node-js-with-express-and-typescript-913ec06d74b3)
-- [Testing with Jest in TypeScript and Node.js for Beginners](https://blog.santoshshinde.com/beginners-guide-to-testing-jest-with-node-typescript-1f46a1b87dad)
-- [Static Code Analysis for Node.js and TypeScript Project using SonarQube](https://blog.santoshshinde.com/static-code-analysis-for-node-js-and-typescript-project-using-sonarqube-8f90799add06)
-- [Visualization of Node.js Event Emitter](https://blog.santoshshinde.com/visualization-of-node-js-event-emitter-4f7c9fe3a477)
 
 <hr/>
 

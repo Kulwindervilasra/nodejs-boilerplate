@@ -7,15 +7,22 @@
     },
     "host": "",
     "basePath": "/api",
-    "tags": [{
-        "name": "node-boilerplate",
-        "description": "Node Typescript Boilerplate"
-    }],
-    "schemes": ["http", "https"],
+    "tags": [
+        {
+            "name": "node-boilerplate",
+            "description": "Node Typescript Boilerplate"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
     "paths": {
         "/status/system": {
             "get": {
-                "tags": ["node-boilerplate"],
+                "tags": [
+                    "node-boilerplate"
+                ],
                 "summary": "get system status",
                 "description": "",
                 "responses": {
@@ -31,7 +38,9 @@
         },
         "/status/time": {
             "get": {
-                "tags": ["node-boilerplate"],
+                "tags": [
+                    "node-boilerplate"
+                ],
                 "summary": "get server time",
                 "description": "",
                 "responses": {
@@ -47,7 +56,9 @@
         },
         "/status/usage": {
             "get": {
-                "tags": ["node-boilerplate"],
+                "tags": [
+                    "node-boilerplate"
+                ],
                 "summary": "get server usage",
                 "description": "",
                 "responses": {
@@ -63,7 +74,9 @@
         },
         "/status/process": {
             "get": {
-                "tags": ["node-boilerplate"],
+                "tags": [
+                    "node-boilerplate"
+                ],
                 "summary": "get server process",
                 "description": "",
                 "responses": {
@@ -82,12 +95,8 @@
     "definitions": {
         "ApiResponse": {
             "type": "object",
-            "properties": {
-            }
+            "properties": {}
         }
     },
-    "externalDocs": {
-        "description": "Find out more about Node Typescript Boilerplate",
-        "url": "https://blog.santoshshinde.com/skeleton-for-node-js-apps-written-in-typescript-444fa1695b30"
-    }
+    "externalDocs": {}
 }

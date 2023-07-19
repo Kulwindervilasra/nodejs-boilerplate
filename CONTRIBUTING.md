@@ -9,9 +9,5 @@ they should reciprocate that respect in addressing your issue or assessing
 patches and features.
 
 
-## Using the issue tracker
 
-The issue tracker is the preferred channel for [bug reports](https://github.com/santoshshinde2012/node-boilerplate/issues),
-[features requests](https://github.com/santoshshinde2012/node-boilerplate/discussions) and [submitting pull
-requests](https://github.com/santoshshinde2012/node-boilerplate/pulls).
 

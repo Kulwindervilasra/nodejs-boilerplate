@@ -30,7 +30,7 @@
     "migrate:dev": "prisma migrate dev",
     "db:studio": "prisma studio"
   },
-  "author": "Santosh Shinde",
+  "author": "Kulwinder Singh",
   "license": "Apache-2.0",
   "dependencies": {
     "@grpc/proto-loader": "^0.7.8",
