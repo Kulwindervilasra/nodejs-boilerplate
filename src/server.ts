@@ -4,8 +4,7 @@ import { setGlobalEnvironment } from './global';
 import App from './App';
 import Environment from './environments/environment';
 import logger from './lib/logger';
-import grpcServer from "./grpc_server";
-
+import grpcServer from './grpc_server';
 
 const env: Environment = new Environment();
 setGlobalEnvironment(env);

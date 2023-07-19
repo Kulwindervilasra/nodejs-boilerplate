@@ -5,25 +5,24 @@ import { DateTimeResolver } from 'graphql-scalars';
 import prisma from './db';
 
 const builder = new SchemaBuilder<{
-    PrismaTypes: PrismaTypes
-    // Context: {}
-    Scalars: {
-        DateTime: {
-            Input: Date
-            Output: Date
-        }
-    }
+	PrismaTypes: PrismaTypes;
+	// Context: {}
+	Scalars: {
+		DateTime: {
+			Input: Date;
+			Output: Date;
+		};
+	};
 }>({
-    plugins: [PrismaPlugin],
-    prisma: {
-        client: prisma,
-    },
+	plugins: [PrismaPlugin],
+	prisma: {
+		client: prisma,
+	},
 });
 
 builder.queryType({});
 builder.mutationType({});
 
 builder.addScalarType('DateTime', DateTimeResolver, {});
-
 
 export default builder;

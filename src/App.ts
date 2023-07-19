@@ -6,8 +6,8 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import registerRoutes from './routes';
 import addErrorHandler from './middleware/error-handler';
-import { createYoga } from 'graphql-yoga'
-import { schema } from '../src/schema'
+import { createYoga } from 'graphql-yoga';
+import schema from '../src/schema';
 
 export default class App {
 	public express: express.Application;
@@ -19,10 +19,9 @@ export default class App {
 		context: (req) => {
 			return {
 				req,
-			}
-		}
-	})
-
+			};
+		},
+	});
 
 	public async init(): Promise<void> {
 		this.express = express();
@@ -59,9 +58,12 @@ export default class App {
 		// support application/json type post data
 		// support application/x-www-form-urlencoded post data
 		// Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
-		this.express.use(helmet({
-			contentSecurityPolicy: false, crossOriginEmbedderPolicy: false,
-		}));
+		this.express.use(
+			helmet({
+				contentSecurityPolicy: false,
+				crossOriginEmbedderPolicy: false,
+			}),
+		);
 		this.express.use(express.json({ limit: '100mb' }));
 		this.express.use(
 			express.urlencoded({ limit: '100mb', extended: true }),
@@ -72,12 +74,10 @@ export default class App {
 				'http://localhost:8080/',
 				'http://example.com/',
 				'http://127.0.0.1:3146',
-
 			],
 		};
 		this.express.use(cors(corsOptions));
-		this.express.use(this.yoga.graphqlEndpoint, this.yoga)
-
+		this.express.use(this.yoga.graphqlEndpoint, this.yoga);
 	}
 
 	private parseRequestHeader(
