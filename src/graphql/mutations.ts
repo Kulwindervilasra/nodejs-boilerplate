@@ -1,6 +1,8 @@
 import { YogaInitialContext } from 'graphql-yoga';
 import { arg } from 'nexus';
 import prisma from '../lib/db';
+import { writeFile } from 'fs';
+import path from 'path';
 
 interface IPost {
 	id: number;
@@ -26,4 +28,20 @@ export function signupUser(parent: any, args: any) {
 			},
 		},
 	});
+}
+
+export async function saveFile(_: any, { file }: { file: File }) {
+	try {
+		console.log('Here file', file.name);
+		const fileArrayBuffer = await file.arrayBuffer();
+		writeFile(
+			path.join(__dirname, file.name),
+			Buffer.from(fileArrayBuffer),
+			{},
+			() => {},
+		);
+	} catch (e) {
+		return false;
+	}
+	return true;
 }
