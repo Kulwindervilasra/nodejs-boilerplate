@@ -8,8 +8,8 @@ import registerRoutes from './routes';
 import addErrorHandler from './middleware/error-handler';
 import { createYoga, createSchema } from 'graphql-yoga';
 import { readFileSync } from 'fs';
-import * as queries from "./graphql/queries";
-import * as mutations from "./graphql/mutations";
+import * as queries from './graphql/queries';
+import * as mutations from './graphql/mutations';
 
 export default class App {
 	public express: express.Application;
@@ -18,12 +18,13 @@ export default class App {
 	public yoga = createYoga({
 		graphqlEndpoint: '/graphql',
 		schema: createSchema({
-			typeDefs: readFileSync(__dirname + '/graphql/schema.graphql', { encoding: 'utf-8' }),
+			typeDefs: readFileSync(__dirname + '/graphql/schema.graphql', {
+				encoding: 'utf-8',
+			}),
 			resolvers: {
 				Query: queries,
-				Mutation: mutations
-			}
-
+				Mutation: mutations,
+			},
 		}),
 		context: (req) => {
 			return {
