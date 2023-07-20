@@ -10,10 +10,10 @@ enum Environments {
 enum EnvironmentFile {
 	LOCAL = '.env',
 	PRODUCTION = '.env.prod',
-	DEV = '.env',
+
 	TEST = '.env.test',
 	QA = '.env.stag',
-	STAGING = '.env.stag',
+
 }
 
 export { Environments, EnvironmentFile };
