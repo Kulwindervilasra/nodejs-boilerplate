@@ -1,5 +1,8 @@
-import { ServerUnaryCall, sendUnaryData, Call, ServiceError } from 'grpc';
+import * as fs from 'fs';
+import { ServerUnaryCall, sendUnaryData, Call, ServiceError, ServerReadableStream } from 'grpc';
+import { uuid } from 'uuidv4';
 import prisma from '../lib/db';
+import logger from '../lib/logger';
 
 interface IPOST {
 	id: number;
@@ -125,3 +128,39 @@ export async function publish(call: any, callback: any) {
 		callback(e, null);
 	}
 }
+
+
+
+
+// define file upload method
+
+export async function uploadFile(call: ServerReadableStream<{ name: string, chunk: Buffer }>,
+	callback: sendUnaryData<{ id: string, name: string }>) {
+	logger.debug('gRPC file upload');
+
+	let name: string;
+	const tempFilePath = `./${uuid()}.jpeg`;
+
+	const file: fs.WriteStream = fs.createWriteStream(tempFilePath)
+		;
+	// handle incoming data stream
+	call.on('data', (payload) => {
+		if (payload.name) {
+			name = payload.name;
+
+		}
+		if (payload.chunk)
+			file.write(payload.chunk);
+
+		logger.debug(`Writing file chunk: ${tempFilePath}`);
+
+	});
+	// on stream end send final response to the client with required details
+	call.on('end', () => {
+		file.close();
+		callback(null, {
+			'id': uuid(),
+			'name': name
+		});
+	});
+};

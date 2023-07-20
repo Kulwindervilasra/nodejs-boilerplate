@@ -51,7 +51,7 @@ class Environment implements IEnvironment {
 				envPath = path.resolve(rootdir, EnvironmentFile.TEST);
 				break;
 			case Environments.STAGING:
-				envPath = path.resolve(rootdir, EnvironmentFile.STAGING);
+				envPath = path.resolve(rootdir, EnvironmentFile.QA);
 				break;
 			case Environments.LOCAL:
 				envPath = path.resolve(rootdir, EnvironmentFile.LOCAL);

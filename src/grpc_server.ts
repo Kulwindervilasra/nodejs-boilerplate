@@ -1,6 +1,7 @@
 import * as protoLoader from '@grpc/proto-loader';
 import * as grpc from 'grpc';
 import { services } from './grpc';
+import logger from './lib/logger';
 
 const PROTO_PATH = __dirname + '/../service.proto';
 
@@ -18,5 +19,6 @@ export default function startServer() {
 	server.addService(blog.Blog.service, services);
 	server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure());
 
+	logger.info("GRPC server running on 50051")
 	server.start();
 }

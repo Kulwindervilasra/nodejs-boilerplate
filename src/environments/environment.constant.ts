@@ -13,7 +13,6 @@ enum EnvironmentFile {
 
 	TEST = '.env.test',
 	QA = '.env.stag',
-
 }
 
 export { Environments, EnvironmentFile };

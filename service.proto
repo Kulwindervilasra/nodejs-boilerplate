@@ -13,6 +13,7 @@ service Blog {
   rpc CreateDraft(CreateDraftRequest) returns (Post) {};
   rpc DeletePost(DeletePostRequest) returns (Post) {};
   rpc Publish(PublishRequest) returns (Post) {};
+  rpc UploadFile(stream FileUploadRequest) returns (FileUploadResponse) {};
 }
 
 message Post {
@@ -22,7 +23,7 @@ message Post {
   string title = 4;
   string content = 5;
   bool published = 6;
-  User author = 7; 
+  User author = 7;
 }
 
 message User {
@@ -34,21 +35,13 @@ message User {
 
 message FeedRequest {}
 
-message FeedResponse {
-  repeated Post feed = 1;
-}
+message FeedResponse { repeated Post feed = 1; }
 
-message FilterPostsRequest {
-  string searchString = 1;
-}
+message FilterPostsRequest { string searchString = 1; }
 
-message FilterPostsResponse {
-  repeated Post filteredPosts = 1;
-}
+message FilterPostsResponse { repeated Post filteredPosts = 1; }
 
-message PostRequest {
-  int32 id = 1;
-}
+message PostRequest { int32 id = 1; }
 
 message SignupUserRequest {
   string name = 1;
@@ -61,10 +54,16 @@ message CreateDraftRequest {
   string authorEmail = 3;
 }
 
-message PublishRequest {
-  int32 id = 1;
+message PublishRequest { int32 id = 1; }
+
+message DeletePostRequest { int32 id = 1; }
+
+message FileUploadRequest {
+  string name = 1;
+  bytes chunk = 2;
 }
 
-message DeletePostRequest {
-  int32 id = 1;
+message FileUploadResponse {
+  string id = 1;
+  string name = 2;
 }
