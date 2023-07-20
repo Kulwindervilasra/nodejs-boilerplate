@@ -15,6 +15,9 @@
     "esModuleInterop": true,
     "strict": true
   },
+  "files": [
+    "@types/graphql.d.ts"
+  ],
   "include": [
     "src/**/*.ts",
     "index.js",

@@ -6,8 +6,10 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '../swagger.json';
 import registerRoutes from './routes';
 import addErrorHandler from './middleware/error-handler';
-import { createYoga } from 'graphql-yoga';
-import schema from '../src/schema';
+import { createYoga, createSchema } from 'graphql-yoga';
+import { readFileSync } from 'fs';
+import * as queries from "./graphql/queries";
+import * as mutations from "./graphql/mutations";
 
 export default class App {
 	public express: express.Application;
@@ -15,7 +17,14 @@ export default class App {
 	public httpServer: http.Server;
 	public yoga = createYoga({
 		graphqlEndpoint: '/graphql',
-		schema,
+		schema: createSchema({
+			typeDefs: readFileSync(__dirname + '/graphql/schema.graphql', { encoding: 'utf-8' }),
+			resolvers: {
+				Query: queries,
+				Mutation: mutations
+			}
+
+		}),
 		context: (req) => {
 			return {
 				req,
