@@ -1,8 +1,8 @@
-import { YogaInitialContext } from 'graphql-yoga';
-import { arg } from 'nexus';
-import prisma from '../lib/db';
 import { writeFile } from 'fs';
 import path from 'path';
+// import { GraphQLResolveInfo } from 'graphql';
+// import { YogaInitialContext } from 'graphql-yoga';
+import prisma from '../lib/db';
 
 interface IPost {
 	id: number;
@@ -14,8 +14,18 @@ interface IPost {
 	authorId: number;
 }
 
-export function signupUser(parent: any, args: any) {
-	console.log(args);
+interface IUserRegister {
+	email: string;
+	name: string;
+	posts?: Array<IPost>;
+}
+
+export function signupUser(
+	_parent: any,
+	args: { data: IUserRegister },
+	// _contextValue: YogaInitialContext,
+	// _info: GraphQLResolveInfo
+) {
 	return prisma.user.create({
 		data: {
 			email: args.data.email,
@@ -32,7 +42,6 @@ export function signupUser(parent: any, args: any) {
 
 export async function saveFile(_: any, { file }: { file: File }) {
 	try {
-		console.log('Here file', file.name);
 		const fileArrayBuffer = await file.arrayBuffer();
 		writeFile(
 			path.join(__dirname, file.name),

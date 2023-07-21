@@ -91,7 +91,14 @@ export async function signupUser(
 	}
 }
 
-export async function createDraft(call: any, callback: any) {
+export async function createDraft(
+	call: ServerUnaryCall<{
+		title: string;
+		content: string;
+		authorEmail: string;
+	}>,
+	callback: sendUnaryData<IPOST>,
+) {
 	const { title, content, authorEmail } = call.request;
 	try {
 		const newDraft = await prisma.post.create({
@@ -104,11 +111,14 @@ export async function createDraft(call: any, callback: any) {
 		});
 		callback(null, newDraft);
 	} catch (e) {
-		callback(e, null);
+		callback(e as ServiceError, null);
 	}
 }
 
-export async function deletePost(call: any, callback: any) {
+export async function deletePost(
+	call: ServerUnaryCall<{ id: number }>,
+	callback: sendUnaryData<IPOST>,
+) {
 	const { id } = call.request;
 	try {
 		const deletedPost = await prisma.post.delete({
@@ -118,11 +128,14 @@ export async function deletePost(call: any, callback: any) {
 		});
 		callback(null, deletedPost);
 	} catch (e) {
-		callback(e, null);
+		callback(e as ServiceError, null);
 	}
 }
 
-export async function publish(call: any, callback: any) {
+export async function publish(
+	call: ServerUnaryCall<{ id: number }>,
+	callback: sendUnaryData<IPOST>,
+) {
 	const { id } = call.request;
 	try {
 		const publishedPost = await prisma.post.update({
@@ -131,7 +144,7 @@ export async function publish(call: any, callback: any) {
 		});
 		callback(null, publishedPost);
 	} catch (e) {
-		callback(e, null);
+		callback(e as ServiceError, null);
 	}
 }
 
