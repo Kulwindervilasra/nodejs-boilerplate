@@ -10,7 +10,7 @@ import { createYoga, createSchema } from 'graphql-yoga';
 import { readFileSync } from 'fs';
 import * as queries from './graphql/queries';
 import * as mutations from './graphql/mutations';
-import prisma from "./lib/db"
+import prisma from './lib/db';
 import { authenticateUser } from './middleware/auth';
 export default class App {
 	public express: express.Application;
@@ -27,12 +27,14 @@ export default class App {
 				Query: queries,
 				Mutation: mutations,
 			},
-
 		}),
 		context: async (initialContext) => {
 			return {
 				prisma,
-				currentUser: await authenticateUser(prisma, initialContext.request)
+				currentUser: await authenticateUser(
+					prisma,
+					initialContext.request,
+				),
 			};
 		},
 	});

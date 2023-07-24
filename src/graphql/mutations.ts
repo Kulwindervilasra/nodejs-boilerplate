@@ -22,7 +22,7 @@ interface IUserRegister {
 
 export async function signupUser(
 	_parent: any,
-	args: { data: IUserRegister, token: string },
+	args: { data: IUserRegister; token: string },
 	_contextValue: GraphQLContext,
 	// _info: GraphQLResolveInfo
 ) {
@@ -41,9 +41,8 @@ export async function signupUser(
 
 	return {
 		data: profile,
-		token: sign({ id: profile.id }, environment.secretKey)
+		token: sign({ id: profile.id }, environment.secretKey),
 	};
-
 }
 
 export async function saveFile(_: any, { file }: { file: File }) {
@@ -53,7 +52,7 @@ export async function saveFile(_: any, { file }: { file: File }) {
 			path.join(__dirname, file.name),
 			Buffer.from(fileArrayBuffer),
 			{},
-			() => { },
+			() => {},
 		);
 	} catch (e) {
 		return false;
