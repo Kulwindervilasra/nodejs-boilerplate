@@ -10,13 +10,15 @@ import { createYoga, createSchema } from 'graphql-yoga';
 import { readFileSync } from 'fs';
 import * as queries from './graphql/queries';
 import * as mutations from './graphql/mutations';
-
+import prisma from "./lib/db"
+import { authenticateUser } from './middleware/auth';
 export default class App {
 	public express: express.Application;
 
 	public httpServer: http.Server;
 	public yoga = createYoga({
 		graphqlEndpoint: '/graphql',
+
 		schema: createSchema({
 			typeDefs: readFileSync(__dirname + '/graphql/schema.graphql', {
 				encoding: 'utf-8',
@@ -25,10 +27,12 @@ export default class App {
 				Query: queries,
 				Mutation: mutations,
 			},
+
 		}),
-		context: (req) => {
+		context: async (initialContext) => {
 			return {
-				req,
+				prisma,
+				currentUser: await authenticateUser(prisma, initialContext.request)
 			};
 		},
 	});

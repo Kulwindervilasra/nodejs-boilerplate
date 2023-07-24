@@ -1,8 +1,8 @@
 import { writeFile } from 'fs';
 import path from 'path';
 // import { GraphQLResolveInfo } from 'graphql';
-// import { YogaInitialContext } from 'graphql-yoga';
-import prisma from '../lib/db';
+import { sign } from 'jsonwebtoken';
+import { GraphQLContext } from '../lib/db';
 
 interface IPost {
 	id: number;
@@ -20,13 +20,13 @@ interface IUserRegister {
 	posts?: Array<IPost>;
 }
 
-export function signupUser(
+export async function signupUser(
 	_parent: any,
-	args: { data: IUserRegister },
-	// _contextValue: YogaInitialContext,
+	args: { data: IUserRegister, token: string },
+	_contextValue: GraphQLContext,
 	// _info: GraphQLResolveInfo
 ) {
-	return prisma.user.create({
+	const profile = await _contextValue.prisma.user.create({
 		data: {
 			email: args.data.email,
 			name: args.data.name,
@@ -38,6 +38,12 @@ export function signupUser(
 			},
 		},
 	});
+
+	return {
+		data: profile,
+		token: sign({ id: profile.id }, environment.secretKey)
+	};
+
 }
 
 export async function saveFile(_: any, { file }: { file: File }) {
@@ -47,7 +53,7 @@ export async function saveFile(_: any, { file }: { file: File }) {
 			path.join(__dirname, file.name),
 			Buffer.from(fileArrayBuffer),
 			{},
-			() => {},
+			() => { },
 		);
 	} catch (e) {
 		return false;

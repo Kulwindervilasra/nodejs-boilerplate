@@ -9,7 +9,7 @@ type Mutation {
   createDraft(authorEmail: String!, data: PostCreateInput!): Post!
   deletePost(id: Int!): Post!
   incrementPostViewCount(id: Int!): Post!
-  signupUser(data: UserCreateInput!): User!
+  signupUser(data: UserCreateInput!): UserResponse!
   togglePublishPost(id: Int!): Post!
   saveFile(file: File!): Boolean!
 
@@ -44,6 +44,11 @@ type Query {
 enum SortOrder {
   asc
   desc
+}
+
+type UserResponse{
+  data:User,
+  token:String
 }
 
 type User {
